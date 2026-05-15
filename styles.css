@@ -34,7 +34,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1.5rem;
     flex: 1;
     flex-wrap: wrap;
     gap: 1rem;
@@ -104,4 +104,52 @@ header {
 
 .game-try:hover {
     background-color: var(--primary-hover);
+}
+
+/*Incorrect and overlay*/
+
+.overlay {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    background-color: #000000af;
+    inset: 0;
+    z-index: 9;
+    height: 100%;
+}
+.overlay.show {
+    display: block;
+    pointer-events: all;
+}
+
+.incorrect {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    border: none;
+    padding: 2rem 4rem;
+    align-items: center;
+    background-color: var(--primary);
+    color: var(--background);
+    display: none;
+    flex-direction: column;
+    gap: 3rem;
+    border-radius: 15px;
+}
+
+.incorrect.show {
+    display: flex;
+}
+
+.incorrect-reset {
+    border: none;
+    background-color: var(--background);
+    padding: 0.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
 }

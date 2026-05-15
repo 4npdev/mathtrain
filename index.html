@@ -20,11 +20,18 @@
     <div class="game-container">
         <div class="game">
             <p class="game-solve">Solve:</p>
-            <p class="game-task" id="game-task">6 + 7</p>
+            <p class="game-task" id="game-task"></p>
             <input type="number" placeholder="Your answer..." class="game-input" id="game-input">
-            <button class="game-try" id="game-try">Try</button>
+            <button class="game-try" id="game-try" onclick="tryGuess()">Try</button>
         </div>
     </div>
+
+    <div class="incorrect" id="incorrect"> 
+        <h1 class="incorrect-header">Incorrect!</h1>
+        <p class="incorrect-correction" id="incorrect-correction">fd</p>
+        <button class="incorrect-reset" onclick="generateTask(); resetUI();">Reset</button>
+    </div>
+    <div class="overlay" id="overlay"></div>
     <script src="script.js"></script>
 </body>
 </html>

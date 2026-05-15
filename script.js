@@ -1,9 +1,87 @@
 //Variables
 const headerStreak = document.getElementById("header-streak");
 const headerBest = document.getElementById("header-best");
+const gameTask = document.getElementById("game-task");
+const gameInput = document.getElementById("game-input");
+const incorrect = document.getElementById("incorrect");
+const overlay = document.getElementById("overlay");
+const incorrectCorrection = document.getElementById("incorrect-correction");
 let streak = Number(localStorage.getItem("streak")) || 0;
 let best = Number(localStorage.getItem("best")) || 0;
+let task;
+let operator;
+let result;
 
 //Code
 headerStreak.textContent = "Streak: " + streak;
 headerBest.textContent = "Best: " + best;
+resetUI();
+generateTask();
+
+function resetUI() {
+    incorrect.classList.remove("show");
+    overlay.classList.remove("show");
+
+    gameInput.focus();
+}
+
+function generateTask() {
+    resetUI();
+    let a = Math.floor(Math.random() * 100);
+    let b = Math.floor(Math.random() * 100);
+
+    let operators = ["+", "-"];
+    operator = operators[Math.floor(Math.random() * operators.length)];
+
+    task = a + " " + operator + " " + b;
+    
+    if(operator === "+") {
+        result = a + b;
+    }
+
+    if (operator === "-") {
+        result = a - b;
+    }
+
+    gameTask.textContent = task;
+}
+
+gameInput.addEventListener("keydown", (e) => {
+    if(e.key === "Enter") {
+        tryGuess();
+    }
+});
+
+function tryGuess() {
+    let guess = Number(gameInput.value);
+    
+    if(gameInput.value === "") {
+        return;
+    }
+
+    gameInput.value = "";
+
+    if(guess === result) {
+        streak++;
+        localStorage.setItem("streak", streak);
+        headerStreak.textContent = "Streak: " + streak;
+        generateTask();
+
+        if(streak > best) {
+            best = streak;
+            localStorage.setItem("best", best);
+            headerBest.textContent = "Best: " + best;
+        }
+    } else {
+        streak = 0;
+        localStorage.setItem("streak", streak);
+        headerStreak.textContent = "Streak: " + streak;
+
+        incorrect.classList.add("show");
+        overlay.classList.add("show");
+        incorrectCorrection.textContent = "The correct answer was " + result;
+
+        gameInput.focus();
+}
+}
+
