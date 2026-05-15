@@ -11,9 +11,20 @@
 <body>
     <header>
         <h1 class="header-title">MathTrain</h1>
-        <p class="header-best" id="header-best"></p>
+        <div class="header-stats">
+            <p class="header-streak" id="header-streak"></p>
+            <p class="header-best" id="header-best"></p>
+        </div>
     </header>
 
+    <div class="game-container">
+        <div class="game">
+            <p class="game-solve">Solve:</p>
+            <p class="game-task" id="game-task">6 + 7</p>
+            <input type="number" placeholder="Your answer..." class="game-input" id="game-input">
+            <button class="game-try" id="game-try">Try</button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
