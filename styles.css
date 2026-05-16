@@ -70,7 +70,7 @@ header {
 
 .game-container {
     width: 100%;
-    min-height: 100svh;
+    min-height: 90svh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,6 +139,19 @@ header {
 
 .game-try:hover {
     background-color: var(--primary);
+}
+
+/*Footer*/
+
+footer {
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+
+footer a {
+    color: var(--text);
 }
 
 /*Incorrect and overlay*/
