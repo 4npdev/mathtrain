@@ -6,6 +6,8 @@ const gameInput = document.getElementById("game-input");
 const incorrect = document.getElementById("incorrect");
 const overlay = document.getElementById("overlay");
 const incorrectCorrection = document.getElementById("incorrect-correction");
+const incorrectStreak = document.getElementById("incorrect-streak");
+const incorrectGuess = document.getElementById("incorrect-guess");
 let streak = Number(localStorage.getItem("streak")) || 0;
 let best = Number(localStorage.getItem("best")) || 0;
 let task;
@@ -103,14 +105,16 @@ function tryGuess() {
             headerBest.textContent = "Best: " + best;
         }
     } else {
+        incorrect.classList.add("show");
+        overlay.classList.add("show");
+        incorrectCorrection.textContent = "Correct answer: " + result;
+        incorrectGuess.textContent = "Your answer: " + guess;
+        incorrectStreak.textContent = "Streak: " + streak;
+        
         streak = 0;
         localStorage.setItem("streak", streak);
         localStorage.removeItem("currentTask");
         headerStreak.textContent = "Streak: " + streak;
-
-        incorrect.classList.add("show");
-        overlay.classList.add("show");
-        incorrectCorrection.textContent = "The correct answer was " + result;
 
         gameInput.focus();
 }

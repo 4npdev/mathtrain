@@ -45,7 +45,7 @@ header {
     gap: 1rem;
     position: fixed;
     width: 100%;
-    background: rgba(0, 0, 0, 0.082);
+    background: rgba(0, 0, 0, 0.041);
 }
 
 .header-title {
@@ -167,11 +167,13 @@ header {
     border: none;
     padding: 2rem 4rem;
     align-items: center;
-    background-color: var(--primary);
-    color: var(--background);
+    background-color: var(--background);
+    color: var(--text);
     flex-direction: column;
     display: flex;
     gap: 3rem;
+    width: 100%;
+    max-width: min(500px, 90%);
     opacity: 0;
     pointer-events: none;
     transform: translate(-50%, -60%);
@@ -185,15 +187,28 @@ header {
     transform: translate(-50%, -50%);
 }
 
+.incorrect-streak {
+    border: 1px solid var(--text);
+    padding: 1rem 2rem;
+    border-radius: 15px;
+}
+
 .incorrect-reset {
+    background-color: var(--secondary);
     border: none;
-    background-color: var(--background);
-    padding: 0.5rem;
-    font-weight: 600;
+    color: var(--background);
     font-family: inherit;
-    border-radius: 5px;
-    width: 100%;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 8px;
     cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+
+.incorrect-reset:hover {
+    background-color: var(--primary);
 }
 
 @media (width < 500px) {
