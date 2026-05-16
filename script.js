@@ -15,8 +15,18 @@ let result;
 //Code
 headerStreak.textContent = "Streak: " + streak;
 headerBest.textContent = "Best: " + best;
-resetUI();
-generateTask();
+const saved = localStorage.getItem("currentTask");
+if (saved) {
+    const t = JSON.parse(saved)
+    operator = t.op
+    task = t.a + " " + t.op + " " + t.b
+    result = t.res
+    gameTask.textContent = task
+    resetUI()
+} else {
+    resetUI()
+    generateTask()
+}
 
 function resetUI() {
     incorrect.classList.remove("show");
@@ -43,7 +53,13 @@ function generateTask() {
         result = a - b;
     }
 
+    saveTask(a, b, operator, result)
+
     gameTask.textContent = task;
+}
+
+function saveTask(a, b, op, res) {
+    localStorage.setItem("currentTask", JSON.stringify({ a, b, op, res }))
 }
 
 gameInput.addEventListener("keydown", (e) => {
@@ -75,6 +91,7 @@ function tryGuess() {
     } else {
         streak = 0;
         localStorage.setItem("streak", streak);
+        localStorage.removeItem("currentTask");
         headerStreak.textContent = "Streak: " + streak;
 
         incorrect.classList.add("show");
