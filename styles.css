@@ -2,6 +2,7 @@
     --background: #ececec;
     --primary: #f53737;
     --primary-hover: #bb2e2e;
+    --secondary: #fa6464;
     --text: #131313;
     --gray: #b6b6b6;
 }
@@ -13,9 +14,14 @@
 }
 
 body {
-    background-color: var(--background);
     font-family: "Inter", sans-serif;
     color: var(--text);
+    min-height: 100vh;
+    background-color: var(--background);
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.288) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.288) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
 input::-webkit-outer-spin-button,
@@ -35,7 +41,6 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
-    flex: 1;
     flex-wrap: wrap;
     gap: 1rem;
 }
@@ -47,6 +52,10 @@ header {
 .header-stats {
     display: flex;
     gap: 2rem;
+    border: 1px solid var(--text);
+    border-radius: 15px;
+    padding: 0.5rem 2rem;
+    background-color: rgba(179, 14, 14, 0.301);
 }
 
 .header-streak,
@@ -59,7 +68,7 @@ header {
 
 .game-container {
     width: 100%;
-    height: 70svh;
+    min-height: 70svh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,55 +79,78 @@ header {
     flex-direction: column;
     width: 100%;
     max-width: 400px;
-    padding: 1rem;
-}
-
-.game-solve {
-    text-align: center;
-    margin-bottom: 1rem;
-    user-select: none;
+    padding: 2.5rem;
+    border-radius: 15px;
+    background-color: var(--secondary);
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .game-task {
     user-select: none;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-size: 2rem;
+    font-weight: 600;
 }
 
 .game-input {
-    padding: 1rem;
+    background: none;
     border: none;
-    margin-bottom: 8px;
-    transition: outline 0.2s ease;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    outline: none;
+    padding: 0.75rem 0;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-family: inherit;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+}
+
+.game-input:focus {
+    border-bottom-color: rgba(0,0,0,0.6);
+}
+
+.game-input::placeholder {
+    color: rgba(0,0,0,0.3);
+    font-weight: 400;
 }
 
 .game-try {
-    background-color: var(--primary);
+    background-color: white;
     border: none;
-    color: var(--background);
+    color: var(--secondary);
+    font-family: inherit;
+    font-weight: 700;
     padding: 1rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
+
 .game-try:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--text);
+    color: white;
 }
 
 /*Incorrect and overlay*/
 
 .overlay {
-    display: none;
+    opacity: 0;
     pointer-events: none;
     position: fixed;
-    background-color: #000000af;
+    background-color: rgba(0,0,0,0.7);
     inset: 0;
     z-index: 9;
-    height: 100%;
+    transition: opacity 0.2s ease;
 }
+
 .overlay.show {
-    display: block;
+    opacity: 1;
     pointer-events: all;
 }
 
@@ -133,14 +165,20 @@ header {
     align-items: center;
     background-color: var(--primary);
     color: var(--background);
-    display: none;
     flex-direction: column;
+    display: flex;
     gap: 3rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -60%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
     border-radius: 15px;
 }
 
 .incorrect.show {
-    display: flex;
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
 }
 
 .incorrect-reset {
