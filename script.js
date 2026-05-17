@@ -12,7 +12,6 @@ let streak = Number(localStorage.getItem("streak")) || 0;
 let best = Number(localStorage.getItem("best")) || 0;
 let task;
 let operator;
-let randomIndex;
 let result;
 
 //Code
@@ -40,6 +39,7 @@ function resetUI() {
 
 function generateTask() {
     resetUI();
+    let randomIndex;
     let a = Math.floor(Math.random() * 100);
     let b = Math.floor(Math.random() * 100);
 
@@ -55,7 +55,6 @@ function generateTask() {
         operator = operators[randomIndex];
     }
 
-    task = a + " " + operator + " " + b;
     
     if(operator === "+") {
         result = a + b;
@@ -66,8 +65,12 @@ function generateTask() {
     }
 
     if(operator === "*") {
+        a = Math.floor(Math.random() * 12);
+        b = Math.floor(Math.random() * 12);
         result = a * b;
     }
+    
+    task = a + " " + operator + " " + b;
 
     saveTask(a, b, operator, result)
 
