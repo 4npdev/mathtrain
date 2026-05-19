@@ -2,7 +2,7 @@
 
  I made this fun math game in HTML, CSS and Javascript!
 
-**Live site:** ([https://4np.dev](https://4npdev.github.io/mathtrain/))
+**Live site:** https://mathtrain.vercel.app
 
 ---
 
